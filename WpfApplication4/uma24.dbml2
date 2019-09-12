@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="uma24" Class="uma24DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=218.150.35.150;Initial Catalog=uma24;Persist Security Info=True;User ID=sa" SettingsObjectName="UMA24.Properties.Settings" SettingsPropertyName="uma24ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Address" Member="Addresses">
+    <Type Name="Address">
+      <Column Name="DONG" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="GUGUN" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="Popular" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Color" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customers" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PNumberID" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="AddrGugun" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="AddrDong" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="AddrExtra" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Customer_Order" Member="Orders" ThisKey="ID" OtherKey="CustomerID" Type="Order" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employee" Member="Employees">
+    <Type Name="Employee">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmployeeName" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="type" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="Employee_Order" Member="Orders" ThisKey="ID" OtherKey="ProcEmployee" Type="Order" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Orders" Member="Orders">
+    <Type Name="Order">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Finish" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ProcEmployee" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OrderExtend" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Order_OrderDetail" Member="OrderDetails" ThisKey="ID" OtherKey="OrderID" Type="OrderDetail" />
+      <Association Name="Customer_Order" Member="Customer" ThisKey="CustomerID" OtherKey="ID" Type="Customer" IsForeignKey="true" />
+      <Association Name="Employee_Order" Member="Employee" ThisKey="ProcEmployee" OtherKey="ID" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderDetail" Member="OrderDetails">
+    <Type Name="OrderDetail">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OrderID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Order_OrderDetail" Member="Order" ThisKey="OrderID" OtherKey="ID" Type="Order" IsForeignKey="true" />
+      <Association Name="Product_OrderDetail" Member="Product" ThisKey="ProductID" OtherKey="ID" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Product" Member="Products">
+    <Type Name="Product">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductName" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Categories" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ProductSourceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Product_OrderDetail" Member="OrderDetails" ThisKey="ID" OtherKey="ProductID" Type="OrderDetail" />
+      <Association Name="Product_ProductSourceDetail" Member="ProductSourceDetails" ThisKey="ID" OtherKey="ProductID" Type="ProductSourceDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProductSourceDetail" Member="ProductSourceDetails">
+    <Type Name="ProductSourceDetail">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StockID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Product_ProductSourceDetail" Member="Product" ThisKey="ProductID" OtherKey="ID" Type="Product" IsForeignKey="true" />
+      <Association Name="Stock_ProductSourceDetail" Member="Stock" ThisKey="StockID" OtherKey="ID" Type="Stock" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Stock" Member="Stocks">
+    <Type Name="Stock">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StockName" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Qualtity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Madeby" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Association Name="Stock_ProductSourceDetail" Member="ProductSourceDetails" ThisKey="ID" OtherKey="StockID" Type="ProductSourceDetail" />
+    </Type>
+  </Table>
+</Database>

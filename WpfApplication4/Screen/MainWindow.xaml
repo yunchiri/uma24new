@@ -1,0 +1,33 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="UMA24.MainWindow"
+        Title="MainWindow" Height="1053" Width="1292" WindowState="Maximized"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" 
+        x:Name="MainScreen" Loaded="MainScreen_Loaded" Unloaded="MainScreen_Unloaded">
+    <Grid Background="White" Margin="0,0,0,0" Width="1280" Height="1024">
+        <ScrollViewer Height="854.5" Width="1279" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <WrapPanel HorizontalAlignment="Left" x:Name="screenBoard" Width="1260" Background="#FF293426" Orientation="Horizontal" VerticalAlignment="Stretch" FlowDirection="LeftToRight" Height="2000" />
+        </ScrollViewer>
+        <Grid Margin="0,853,4,-5.5" RenderTransformOrigin="0.475,0.276" Background="#FF22185D">
+            <StackPanel Margin="58,8,0,0" x:Name="menubar" Orientation="Horizontal" HorizontalAlignment="Left" Width="820" VerticalAlignment="Top" Height="95">
+                <Button Content="주문" Margin="5" FontSize="60"  x:Name="btnOrder" Click="btnOrder_Click" Background="#FF5EFF21" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Width="260" FontFamily="Malgun Gothic">
+                </Button>
+                <Button Content="정산" Margin="5" FontSize="60"  x:Name="btnCalc" Click="btnCalc_Click" Background="#FFFF590B" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Width="260" FontFamily="Malgun Gothic">
+                </Button>
+
+                <Button Content="메뉴판" Height="86" Name="button3"  Click="button3_Click" FontSize="60" Margin="5" Background="#FFF9C437" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Width="260" FontFamily="Malgun Gothic">
+
+                </Button>
+            </StackPanel>
+            <Button
+            Content="끄기" Height="33" HorizontalAlignment="Left" Margin="1061,15,0,0" x:Name="button2" VerticalAlignment="Top" Width="47" Click="button2_Click" FontSize="18.667" Foreground="WhiteSmoke" Background="#FFEB0000"></Button>
+            <Button
+            Content="수동입력기" Height="30" HorizontalAlignment="Left" Margin="1005,15,0,0" x:Name="button1" VerticalAlignment="Top" Width="50" Click="button1_Click" IsEnabled="True" />
+            <TextBox
+            Height="31" HorizontalAlignment="Left" Margin="872,14,0,0" x:Name="textBox1" VerticalAlignment="Top" Width="120" IsEnabled="True" HorizontalContentAlignment="Center" FontSize="15" FontWeight="Bold" />
+            <WrapPanel x:Name="orderSlotPanel" Height="58" Margin="3,0,3,5" VerticalAlignment="Bottom" Background="#FF2D2A29"/>
+            <Button x:Name="btnBeforeOrderM" HorizontalAlignment="Left" Margin="1,4,0,67.5" Width="56" Background="#FF08A5FF" Content="&lt;" FontSize="32" Click="btnBeforeOrderM_Click" Foreground="White" FontWeight="Bold" />
+            <Button x:Name="btnBeforeOrderP" HorizontalAlignment="Right" Margin="0,4,5,67.5" Width="62" Background="#FF08A5FF" Content="&gt;" FontSize="32" Click="btnBeforeOrderP_Click" Foreground="White" FontWeight="Bold" />
+            <Label Height="70" HorizontalAlignment="Center" Margin="872,52,86,0" Name="txtShowTime" VerticalAlignment="Top" Width="318" Foreground="White" FontSize="55" FontFamily="Dotum" Content="오전 12:00" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+            <Button Background="#FF05EB00" Content="출력" FontSize="15" Foreground="#FF2E2E2E" Height="33" HorizontalAlignment="Left" Margin="1116,15,0,0" Name="btnPrintMode" VerticalAlignment="Top" Width="47" Click="btnPrintMode_Click" />
+        </Grid>
+    </Grid>
+</Window>

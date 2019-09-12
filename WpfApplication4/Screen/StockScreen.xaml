@@ -1,0 +1,24 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:UMA24="clr-namespace:UMA24" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="UMA24.Screen.StockScreen"
+        Title="StockScreen" Height="1024" Width="1280" x:Name="Stockscr" WindowStartupLocation="CenterScreen" WindowStyle="None">
+	<Window.Resources>
+		<UMA24:Stock x:Key="StockDataSource1" d:IsDataSource="True"/>
+		<UMA24:uma24DataContext x:Key="uma24DataContextDataSource" d:IsDataSource="True"/>
+		<UMA24:Stock x:Key="StockDataSource" d:IsDataSource="True"/>
+	</Window.Resources>
+    <Grid Margin="-2,-16,164,2" >
+    	<ScrollViewer Margin="6,16,0,2">
+    		<DataGrid x:Name="StocksGrid" FontSize="45" AutoGenerateColumns="False" Height="1766" Width="1096" ItemsSource="{Binding}" AlternatingRowBackground="#FF98C8D8" RowBackground="#FFC7EDEC">
+    			<DataGrid.Columns>
+    				<DataGridTextColumn Header="재고이름" Binding="{Binding StockName}"/>
+    				<DataGridTextColumn Header="남은수량" Binding="{Binding Qualtity}"/>
+    				<DataGridTextColumn Header="원산지" Binding="{Binding Madeby}"/>
+    			
+    			</DataGrid.Columns>
+    		</DataGrid>
+    	</ScrollViewer>
+    	<Button x:Name="btnClose" Content="닫기" HorizontalAlignment="Right" Height="272" Margin="0,32,-145,0" VerticalAlignment="Top" Width="133" Background="#FFE55B5B" FontSize="48" Click="btnClose_Click" />
+    </Grid>
+</Window>

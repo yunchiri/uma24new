@@ -1,0 +1,9 @@
+﻿<Window x:Class="UMA24.Screen.priceScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="priceScreen" Height="1024" Width="1248" WindowState="Maximized" OpacityMask="AntiqueWhite" PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown">
+    <Grid>
+        <ScrollViewer Height="1194" HorizontalAlignment="Left" Name="scrollViewer1" VerticalAlignment="Top" Width="1226" CanContentScroll="True" HorizontalScrollBarVisibility="Auto"></ScrollViewer>
+        <WrapPanel Height="2000" Name="pricePanel" Width="1210" Background="Black" Margin="4,0,12,-1015"></WrapPanel>
+    </Grid>
+</Window>

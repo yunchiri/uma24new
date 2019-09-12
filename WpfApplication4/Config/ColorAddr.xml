@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<table>
+<addr dong ="삼덕동">
+  <color>red</color>
+</addr>
+  <addr dong="봉덕동">
+    <color>red</color>
+  </addr>
+  
+  
+</table>

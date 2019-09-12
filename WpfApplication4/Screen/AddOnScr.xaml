@@ -1,0 +1,9 @@
+﻿<Window x:Class="UMA24.Screen.AddOnScr"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AddonWindow" Width="{Binding Source={x:Static SystemParameters.MaximizedPrimaryScreenWidth}}" Height="{Binding Source={x:Static SystemParameters.MaximizedPrimaryScreenHeight}}" Loaded="MainWindow_Loaded" WindowState="Normal" WindowStyle="SingleBorderWindow" ShowInTaskbar="False" WindowStartupLocation="Manual" Left="1280" Top="0" Name="AddonWindow">
+    <Grid>
+        <StackPanel Height="Auto" Width="Auto"  HorizontalAlignment="Stretch" Name="stackScreen" VerticalAlignment="Stretch" Background="Black"></StackPanel>
+    </Grid>
+</Window>
+

@@ -1,0 +1,10 @@
+﻿<Window x:Class="UMA24.Screen.CallerInformation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CallerInformation" Height="1000" Width="1000" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" Name="UserInfo" PreviewMouseLeftButtonDown="UserInfo_PreviewMouseLeftButtonDown" Opacity="50" OpacityMask="#FFDECDCD">
+    <Grid>
+        <Label Content="유저이름" Height="160" Width="923" HorizontalAlignment="Center" Margin="18,373,0,0" Name="lb_userName" VerticalAlignment="Top" FontSize="100" HorizontalContentAlignment="Center" />
+        <Label Content="전화번호" Height="160" Width="923" HorizontalAlignment="Center" Margin="17,100,0,0" Name="lb_CallNumber" VerticalAlignment="Top" FontSize="100" HorizontalContentAlignment="Center" />
+        <Label Content="내용" Height="328" Width="956" HorizontalAlignment="Center" Margin="10,621,0,0" Name="lb_Content" VerticalAlignment="Top" FontSize="120" HorizontalContentAlignment="Center" />
+    </Grid>
+</Window>

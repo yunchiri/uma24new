@@ -1,0 +1,52 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:UMA24="clr-namespace:UMA24" mc:Ignorable="d" x:Class="UMA24.Screen.AttactStcokwithProduct"
+        Title="AttactStcokwithProduct" Height="1024" Width="1280" Background="#FF9CBA3A" WindowState="Maximized"  WindowStyle="None" Closing="Window_Closing">
+	<Window.Resources>
+		<UMA24:uma24DataContext x:Key="uma24DataContextDataSource" d:IsDataSource="True"/>
+	</Window.Resources>
+    <Grid Width="1280" Height="1024">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="108*" />
+            <RowDefinition Height="877*" />
+        </Grid.RowDefinitions>
+    	<ListBox
+        Height="908.5" Margin="0,84,848,0" x:Name="listProduct" VerticalAlignment="Top" Background="Black" FontSize="24" Foreground="White" Width="200" HorizontalAlignment="Right" d:LayoutOverrides="Width" Grid.RowSpan="2" />
+    	<ListBox
+        Height="910" HorizontalAlignment="Left" Margin="4.5,-25,0,0" x:Name="listStock" VerticalAlignment="Top" Width="220" Background="Black" FontSize="24" Foreground="White" Grid.Row="1" SelectionChanged="listStock_SelectionChanged" />
+    	<Label
+        Content="재고를" HorizontalAlignment="Left" x:Name="label1" Width="167" FontSize="40" Margin="4.5,11.754,0,28.522"/>
+    	<Label
+        Content="제품에" FontSize="40" Margin="0,10,848,31" x:Name="label2" HorizontalAlignment="Right" Width="183" />
+    	<Button
+        Content="연결시키고끄기" Height="136" Margin="446,210,522,0" x:Name="btnAccept" VerticalAlignment="Top" FontSize="36" Background="#FFE2E443" Click="btnAccept_Click" Grid.Row="1" />
+    	<Grid Margin="0,24,604,0" Grid.Row="1" HorizontalAlignment="Right" Width="206.5" Height="134" VerticalAlignment="Top">
+    		<TextBox
+        HorizontalAlignment="Left" x:Name="txtQuantity" Width="150" Background="Black" FontSize="56" Foreground="White" Text=" 0" Height="150"/>
+    		<Button
+        Content="+" Height="60" VerticalAlignment="Top" FontSize="48" Foreground="White" Background="Black" Click="Button_Click_1" x:Name="btnplus" HorizontalAlignment="Right" Width="60" Margin="0,0,-16.5,0"/>
+    		<Button
+        Content="-" Margin="0,74,-16.5,0" FontSize="48" Background="Black" Foreground="White" Click="Button_Click" x:Name="btnMinus" HorizontalAlignment="Right" Width="60" Height="60"/>
+    	</Grid>
+    	<Label
+        Content="한번에쓰는양" FontSize="32" HorizontalAlignment="Left" Margin="472,83,0,0" x:Name="label4" Width="212" Height="54" VerticalAlignment="Top" Grid.RowSpan="2" />
+        <DataGrid AutoGenerateColumns="False" Height="841" HorizontalAlignment="Left" Margin="780,25,0,0" x:Name="girdProductSource" VerticalAlignment="Top" Width="465" FontSize="24"  SelectionMode="Single" CanUserSortColumns="True" ItemsSource="{Binding  BindsDirectlyToSource=True, IsAsync=True}" RowDetailsTemplate="{Binding OrderDetail}" Grid.Row="1">
+        	<DataGrid.Columns>
+        		<DataGridTextColumn Header="재고를" Binding="{Binding Stock.StockName}"/>
+        		<DataGridTextColumn Header="재품에" Binding="{Binding Product.ProductName}"/>
+        		<DataGridTextColumn Header="한번에쓰는양" Binding="{Binding Quantity}"/>
+             
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="제품에 재고를 연결" FontSize="64" Height="94.5" Margin="0,1,20,0" x:Name="label3" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFDC3F95" HorizontalAlignment="Right" Width="569" />
+        <DataGrid AutoGenerateColumns="False" Grid.Row="1" Height="442" HorizontalAlignment="Left" Margin="446,0,0,46" Name="girdAssisiatInfo" VerticalAlignment="Bottom" Width="312" FontSize="24">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="150" Binding="{Binding Product.ProductName}" Header="연결된제품" />
+                <DataGridTextColumn Width="80" Binding="{Binding Quantity}" Header="쓰는양" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock Grid.RowSpan="2" Height="38" HorizontalAlignment="Left" Margin="793,89,0,0" Name="textBlock1" Text="전체화면 편집가능" VerticalAlignment="Top" Width="268" FontSize="28" />
+        <TextBlock FontSize="28" Height="38" HorizontalAlignment="Left" Margin="446,369,0,0" Name="textBlock2" Text="재고에연결된 제품" VerticalAlignment="Top" Width="268" Grid.Row="1" />
+    </Grid>
+</Window>

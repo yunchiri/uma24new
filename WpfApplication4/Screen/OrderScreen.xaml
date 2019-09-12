@@ -1,0 +1,66 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:UMA24_Model="clr-namespace:UMA24.Model" mc:Ignorable="d" x:Class="UMA24.Screen.OrderScreen"
+        Title="OrderScreen" Height="746" Width="1062" WindowStyle="None" x:Name="ScreenOrder" ResizeMode="NoResize" Loaded="ScreenOrder_Loaded" PreviewMouseDown="ScreenOrder_PreviewMouseDown" xmlns:my="clr-namespace:UMA24.Stars;assembly=Stars" Background="#FF52956D" BorderBrush="Gold" BorderThickness="3">
+	<Window.Resources>
+		<Storyboard x:Key="OnGotFocus1"/>
+	</Window.Resources>
+    <Grid Height="752">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="956*" />
+            <ColumnDefinition Width="84*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="196*" />
+            <RowDefinition Height="600*" />
+        </Grid.RowDefinitions>
+        <TextBox HorizontalAlignment="Right" Margin="0,0,387,362" x:Name="txtCallNumber" Width="352" Text="{Binding Customer.PNumberID}" FontSize="50" SelectionBrush="#FFFFD233" FontWeight="Bold" IsEnabled="True" Height="79" VerticalAlignment="Bottom" TextChanged="txtCallNumber_TextChanged" Grid.Row="1" />
+        <TextBox HorizontalAlignment="Left" Margin="87,0,0,286" x:Name="txtAddrGu" VerticalAlignment="Bottom" Width="150.122" Text="{Binding Customer.AddrGugun}" FontSize="48" SelectionBrush="#FFFFD233" Height="70" TextChanged="txtAddrGu_TextChanged" Grid.Row="1" />
+        <TextBox HorizontalAlignment="Right" Margin="0,0,387,286" x:Name="txtAddrDong" VerticalAlignment="Bottom" Width="258" Text="{Binding Customer.AddrDong}" FontSize="48" SelectionBrush="#FFFFD233" Height="70" TextChanged="txtAddrDong_TextChanged" Grid.Row="1" />
+        <TextBox Margin="140,0,7,200" x:Name="txtAddrExtra" Text="{Binding Customer.AddrExtra}" FontSize="48" SelectionBrush="#FFFFD233" Height="70" VerticalAlignment="Bottom" TextChanged="txtAddrExtra_TextChanged" Grid.Row="1" Grid.ColumnSpan="2" />
+        <Grid Margin="12,12,376,487" Grid.RowSpan="2">
+        	<DataGrid Margin="-1,154,46,50" x:Name="OrderlistBefore" FontSize="48" AutoGenerateColumns="False" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled" Background="White" Visibility="Hidden">
+        		<DataGrid.Columns>
+        			<DataGridTextColumn Binding="{Binding Order.Date}" Header="날짜" FontSize="18.667"/>
+        			<DataGridTextColumn Binding="{Binding Product.ProductName}" Header="주문음식" FontSize="18.667" />
+        			<DataGridTextColumn Binding="{Binding Quantity}" Header="갯수" FontSize="18.667" />              
+        		</DataGrid.Columns>
+        	</DataGrid>
+        	<Label Content="이전주문수" HorizontalAlignment="Left" Margin="13,5,0,0" x:Name="label8" FontSize="30" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment" />
+        	<TextBlock HorizontalAlignment="Left" Margin="0,37,0,0" x:Name="txtOrderCount" VerticalAlignment="Top" FontSize="100" Width="209" d:LayoutOverrides="HorizontalAlignment" Height="113" Foreground="Red" TextAlignment="Center" />
+            <Label Content="단골등급" HorizontalAlignment="Left" Margin="214.5,7,0,0" x:Name="label8_Copy" FontSize="32" VerticalAlignment="Top" FontWeight="Bold" Background="#00FDF409" Foreground="#FFF9FB1F" />
+            <my:MainControl Height="24" HorizontalAlignment="Left" Margin="277,74,0,0" Name="RatingStar" VerticalAlignment="Top" Width="109" RenderTransformOrigin="0.5,0.5" >
+            	<my:MainControl.RenderTransform>
+            		<TransformGroup>
+            			<ScaleTransform ScaleX="2" ScaleY="2"/>
+            			<SkewTransform/>
+            			<RotateTransform/>
+            			<TranslateTransform/>
+            		</TransformGroup>
+            	</my:MainControl.RenderTransform>
+            </my:MainControl>
+        </Grid>
+        <Button Content="주문완료" Margin="0,451,171,0" x:Name="btnOrdAcpt" VerticalAlignment="Top" FontSize="48" HorizontalAlignment="Right" Width="424" OpacityMask="Black" Background="#FFF1E13B" d:LayoutOverrides="VerticalAlignment" Click="btnOrdAcpt_Click" Grid.Row="1" Height="69" />
+        <Button Content="주문취소" HorizontalAlignment="Right" Margin="0,449,12,0" x:Name="btnOrdCanc" VerticalAlignment="Top" FontSize="48" Width="229" Background="#FFF95050" d:LayoutOverrides="VerticalAlignment" Height="71" Click="btnOrdCanc_Click" Grid.Row="1" Grid.ColumnSpan="2" />
+        <Label Content="메뉴" Margin="0,-11,266,0" x:Name="label7" VerticalAlignment="Top" FontSize="40" HorizontalAlignment="Right" />
+        <DataGrid x:Name="OrderList" Margin="596,49,0,286" CanUserResizeRows="False" HorizontalAlignment="Left" Width="435" AutoGenerateColumns="False" FontSize="40" HorizontalScrollBarVisibility="Disabled" Background="White" SelectionChanged="OrderList_SelectionChanged" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False"  BorderBrush="{x:Null}" ItemsSource="{Binding OrderDetails}" SelectionMode="Single" AlternatingRowBackground="#FFDDDE75" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Product.ProductName}" Header="주문음식" CanUserSort="False" CanUserReorder="False" CanUserResize="False" />
+                <DataGridTextColumn Binding="{Binding Quantity}" Header="갯수" CanUserReorder="False" CanUserSort="False" CanUserResize="False"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock Margin="0,2,61,0" x:Name="txtOrderPrice" VerticalAlignment="Top" FontSize="32" Text="0" Foreground="#FFE6F800" HorizontalAlignment="Right" Width="149" Grid.ColumnSpan="2" Background="#FF030303" />
+        <TextBlock Margin="718,2,132,0" x:Name="txtOrderPrice_Copy" VerticalAlignment="Top" FontSize="32" Text="총가격" />
+        <TextBox x:Name="txtExpend" Height="70" Margin="0,0,8,121" TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="48" Width="888" HorizontalAlignment="Right" Text="{Binding OrderExtend}" TextChanged="txtExpend_TextChanged" Grid.Row="1" Grid.ColumnSpan="2" />
+        <TextBlock HorizontalAlignment="Left" Height="50" Margin="14,0,0,124" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="123" FontSize="35" Text="추가말" Name="txtaddon" Grid.Row="1" />
+        <TextBlock HorizontalAlignment="Left" Height="64" Margin="26,0,0,376" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="188" FontSize="45" FontWeight="Bold" Name="txtPhn" Text="주문전화" Grid.Row="1" />
+        <TextBlock HorizontalAlignment="Left" Height="62" Margin="28,216,0,294" TextWrapping="Wrap" Width="55" FontSize="45" Name="txtGu" Grid.Row="1"><Run Language="ko-kr" Text="구"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="62" Margin="247,222,0,287" TextWrapping="Wrap" Width="54" FontSize="45" Name="txtDong" Grid.Row="1"><Run Language="ko-kr" Text="동"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="62" Margin="29,0,0,208" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="108" FontSize="48" Name="txtAddr" Grid.Row="1"><Run Language="ko-kr" Text="주소"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="26,45,0,0" TextWrapping="Wrap" Width="188" FontSize="45" x:Name="txtTime" Text="주문시간" FontWeight="Bold" Height="62" VerticalAlignment="Top" Grid.Row="1" />
+        <TextBlock Margin="213,42,474,451" TextWrapping="Wrap" FontSize="48" x:Name="txtTimeOrder" Foreground="#FFC42424" Grid.Row="1" TextAlignment="Center" />
+        <TextBlock FontSize="48" Foreground="#FFC4F524" Height="62" Margin="0,46,387,459" Name="txtPhoneLineNo" TextWrapping="Wrap" Text="x" Background="Black" Width="55" HorizontalAlignment="Right" TextAlignment="Center" Grid.Row="1" />
+        <Button Content="지도" Height="65" HorizontalAlignment="Left" Margin="29,453,0,0" Name="btnMapOn" VerticalAlignment="Top" Width="301" FontSize="48" Background="{StaticResource {x:Static SystemColors.MenuHighlightBrushKey}}" Click="button1_Click" Grid.Row="1" />
+    </Grid>
+</Window>
