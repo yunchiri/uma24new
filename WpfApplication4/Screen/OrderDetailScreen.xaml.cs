@@ -66,21 +66,22 @@ namespace UMA24.Screen
             sb.Append(txtAddrGu.Text + " ");
             sb.Append(txtAddrDong.Text + " ");
 
-            int divideCountIndex = txtAddrExtra.Text.IndexOf("-");
-            int divideSpaceIndex = txtAddrExtra.Text.IndexOf(" ");
-            if (divideCountIndex > 0)
-            {
-                if (divideCountIndex < divideSpaceIndex)
-                {
-                    sb.Append(txtAddrExtra.Text.Substring(0, divideSpaceIndex));
-                }
-                else
-                {
-                    sb.Append(txtAddrExtra.Text);
-                }
-            }
+            //int divideCountIndex = txtAddrExtra.Text.IndexOf("-");
+            //int divideSpaceIndex = txtAddrExtra.Text.IndexOf(" ");
+            //if (divideCountIndex > 0)
+            //{
+            //    if (divideCountIndex < divideSpaceIndex)
+            //    {
+            //        sb.Append(txtAddrExtra.Text.Substring(0, divideSpaceIndex));
+            //    }
+            //    else
+            //    {
+            //        sb.Append(txtAddrExtra.Text);
+            //    }
+            //}
 
-            
+            sb.Append(txtAddrExtra.Text);
+
             ScreenManager.MapScr.OpenUrl(sb.ToString());
             #endregion
 
