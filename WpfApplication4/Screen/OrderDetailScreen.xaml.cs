@@ -319,7 +319,7 @@ namespace UMA24.Screen
               
                 if (this.OrderData.Customer.AddrGugun != null)
                 {
-                    if (OrderData.Customer.AddrGugun.Contains("홀") || OrderData.Customer.AddrGugun.Contains("부대"))
+                    if (OrderData.Customer.AddrGugun.Contains("홀") )
                     {
                         OrderData.Customer.PNumberID = DataManager.AddrGetID(this.OrderData.Customer.AddrDong).ToString();
 

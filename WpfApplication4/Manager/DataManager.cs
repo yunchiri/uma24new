@@ -98,7 +98,7 @@ namespace UMA24.Manager
 
 p => p.Price != -1 &&
     p.ProductName.Contains("취소") != true &&
-                    p.ProductName.Contains("부대") != true &&
+                    //p.ProductName.Contains("부대") != true &&
     //p.ProductName.Contains("홀") != true &&
                     p.ProductName.Contains("점심") != true)
                     .OrderBy(p => p.Categories).ThenBy(p => p.Price).ToList();
