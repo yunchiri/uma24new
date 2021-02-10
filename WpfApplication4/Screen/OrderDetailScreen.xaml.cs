@@ -79,8 +79,17 @@ namespace UMA24.Screen
             //        sb.Append(txtAddrExtra.Text);
             //    }
             //}
+            
+            string[] firstAddrExtra = txtAddrExtra.Text.Split(new[] { "//" }, StringSplitOptions.None);
 
-            sb.Append(txtAddrExtra.Text);
+            if (firstAddrExtra.Length > 0)
+            {
+                sb.Append(firstAddrExtra[0]);
+            }
+            else
+            {
+                sb.Append(txtAddrExtra.Text);
+            }
 
             ScreenManager.MapScr.OpenUrl(sb.ToString());
             #endregion
